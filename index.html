@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>記憶翻牌遊戲</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+
+<body>
+    <h1>記憶翻牌遊戲</h1><br>
+    
+    <div id="control-buttons" style="display: none;">
+        <button id="flip-all-cards-button">翻開所有卡片</button>
+        <button id="flip-back-cards-button">翻回所有卡片</button>
+        <button id="toggle-matched-images-button">顯示/隱藏配對成功的圖片</button>
+    </div>
+    <button id="start-button">開始遊戲</button>
+    <div id="timer">倒數: <span id="countdown-seconds">5</span> 秒</div>
+    <div id="image-container">
+   
+    </div>
+    
+
+    
+    
+<select id="level-selector">
+    <option value="small">2x2</option>
+    <option value="medium" selected>4x4</option>
+    <option value="large">6x6</option>
+</select>
+
+
+    <audio id="success-sound" src="sss.mp3"></audio>
+    <audio id="fail-sound" src="lll.mp3"></audio>
+    <div id="game-board" class="game-board"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>

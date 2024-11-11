@@ -1,0 +1,185 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e7e407; /* 背景顏色保持為黃色 */
+    text-align: center;
+    padding: 20px;
+    position: relative; /* Ensure relative positioning for layering */
+}
+
+h1 {
+    font-size: 56px; /* 保持原來的字體大小 */
+    color: rgb(13, 9, 243); /* 初始顏色 */
+    animation: colorChange 2s infinite; /* 改為顏色變化動畫 */
+    display: inline-block; /* 讓動畫效果更自然 */
+}
+
+h3 {
+    font-size: 24px; /* 保持原來的字體大小 */
+    color: rgb(63, 184, 7); /* 初始顏色 */
+    animation: colorChange 3s infinite; /* 改為顏色變化動畫 */
+    display: inline-block; /* 讓動畫效果更自然 */
+}
+
+#start-button {
+    animation: shake 0.8s infinite; /* 只保留上下晃動動畫 */
+    color: black; /* 字體顏色為白色 */
+    font-size: 24px; /* 放大字體 */
+    padding: 10px 20px;
+    margin: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+@keyframes shake {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-10px) scale(1.1); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes colorChange {
+    0% { color: rgb(13, 9, 243); } /* 起始顏色 */
+    50% { color: rgb(255, 0, 0); } /* 中間顏色 (紅色) */
+    100% { color: rgb(13, 9, 243); } /* 最終顏色 (藍色) */
+}
+
+#control-buttons {
+    display: flex;
+    justify-content: center; /* 置中 */
+    margin: 20px;
+    display: none; /* 預設隱藏 */
+}
+
+#flip-all-cards-button, #flip-back-cards-button {
+    margin: 10px;
+    padding: 10px 15px; /* 添加內邊距 */
+    font-size: 18px; /* 放大字體 */
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+#flip-all-cards-button {
+    background-color: #4CAF50; /* 綠色 */
+    color: white;
+}
+
+#flip-back-cards-button {
+    background-color: #f44336; /* 紅色 */
+    color: white;
+}
+
+#game-board {
+    display: grid;
+    gap: 10px;
+    margin: 20px auto;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 20px; /* Adjust the top position to leave space for buttons */
+}
+
+#game-board.small {
+    grid-template-columns: repeat(2, 150px);
+    grid-template-rows: repeat(2, 150px);
+    width: 320px;
+    height: 320px;
+}
+
+#game-board.medium {
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(4, 100px);
+    width: 440px;
+    height: 440px;
+}
+
+#game-board.large {
+    grid-template-columns: repeat(6, 80px);
+    grid-template-rows: repeat(6, 80px);
+    width: 540px;
+    height: 540px;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+    background-image: url('back.png'); /* 反面的圖片 */
+    background-size: cover; /* 確保圖片覆蓋整個卡片 */
+    background-position: center;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s; /* 翻轉動畫 */
+}
+
+.card.flipped {
+    transform: rotateY(180deg); /* 增加翻轉效果 */
+}
+
+.card.flipped img {
+    display: block; /* 當卡片翻開時顯示圖片 */
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    display: none; /* 隱藏圖片，直到翻開 */
+}
+
+.card.matched {
+    visibility: hidden; /* 配對成功後隱藏 */
+}
+
+#timer {
+    font-size: 24px; /* 字體大小 */
+    color: #f8f3f3; /* 字體顏色 */
+    margin-top: 20px; /* 額外的上邊距 */
+    animation: shake 0.6s infinite;
+}
+
+.end-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid #000;
+    padding: 20px;
+    border-radius: 10px;
+    opacity: 0; /* 初始透明度 */
+    transition: opacity 0.5s ease; /* 透明度過渡 */
+    z-index: 10; /* 確保它在所有元素之上 */
+}
+
+.fade-in {
+    opacity: 1; /* 最終透明度 */
+}
+
+#level-selector {
+    background-color: #ffffff; /* 背景颜色 */
+    border: 2px solid #4CAF50; /* 边框颜色 */
+    border-radius: 5px; /* 圆角 */
+    padding: 10px; /* 内边距 */
+    font-size: 1em; /* 字体大小 */
+    color: #070707; /* 文字颜色 */
+    cursor: pointer; /* 鼠标悬停效果 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+    transition: border-color 0.3s, box-shadow 0.3s; /* 动画效果 */
+}
+
+#level-selector:hover {
+    border-color: #45a049; /* 悬停边框颜色 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 悬停阴影效果 */
+}
+
+#level-selector option {
+    padding: 10px; /* 选项内边距 */
+    background-color: #ffffff; /* 选项背景颜色 */
+    color: #333; /* 选项文字颜色 */
+}
+
+#level-selector option:disabled {
+    color: #999; /* 禁止选中状态的文字颜色 */
+}
